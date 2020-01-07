@@ -227,7 +227,7 @@ class Misc {
     }
 
     //Current page
-    function currentURL() {
+    public static function currentURL() {
 
         $str = 'http';
         if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
@@ -240,7 +240,7 @@ class Misc {
                 $_SERVER['REQUEST_URI'].='?'.$_SERVER['QUERY_STRING'];
             }
         }
-        if ($_SERVER['SERVER_PORT']!=80) {
+        if (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT']!=80) {
             $str .= $_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].$_SERVER['REQUEST_URI'];
         } else {
             $str .= $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
