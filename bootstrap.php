@@ -218,7 +218,7 @@ class Bootstrap {
         require_once INCLUDE_DIR.'class.queue.php';
     }
 
-    function i18n_prep() {
+    public static function i18n_prep() {
         ini_set('default_charset', 'utf-8');
         ini_set('output_encoding', 'utf-8');
 
@@ -293,8 +293,6 @@ class Bootstrap {
             // Use UTF-8 for all multi-byte string encoding
             mb_internal_encoding('utf-8');
         }
-        if (extension_loaded('iconv'))
-            iconv_set_encoding('internal_encoding', 'UTF-8');
 
         if (intval(phpversion()) < 7) {
             function random_int($a, $b) {
