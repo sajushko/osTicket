@@ -27,6 +27,7 @@ class Bootstrap {
         if (defined('E_DEPRECATED')) # 5.3.0
             $error_reporting &= ~(E_DEPRECATED | E_USER_DEPRECATED);
         error_reporting($error_reporting); //Respect whatever is set in php.ini (sysadmin knows better??)
+        error_reporting(E_ALL);
 
         #Don't display errors
         ini_set('display_errors', 1);
@@ -188,7 +189,7 @@ class Bootstrap {
             );
 
         if (!db_connect(DBHOST, DBUSER, DBPASS, $options)) {
-            $ferror=sprintf('Unable to connect to the database — %s',db_connect_error());
+            $ferror=sprintf('Unable to connect to the database â€” %s',db_connect_error());
         }elseif(!db_select_database(DBNAME)) {
             $ferror=sprintf('Unknown or invalid database: %s',DBNAME);
         }
@@ -255,8 +256,8 @@ class Bootstrap {
                         return $str;
                 }
             }
-            define('LATIN1_UC_CHARS', 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ');
-            define('LATIN1_LC_CHARS', 'àáâãäåæçèéêëìíîïðñòóôõöøùúûüý');
+            define('LATIN1_UC_CHARS', 'Ă€Ă�Ă‚Ă�Ă„Ă…Ă†Ă‡Ă�Ă‰ĂŠĂ‹ĂŚĂŤĂŽĂŹĂ�Ă‘Ă’Ă“Ă”Ă•Ă–Ă�Ă™ĂšĂ›ĂśĂť');
+            define('LATIN1_LC_CHARS', 'Ă ĂˇĂ˘ĂŁĂ¤ĂĄĂ¦Ă§Ă¨Ă©ĂŞĂ«Ă¬Ă­Ă®ĂŻĂ°Ă±Ă˛ĂłĂ´ĂµĂ¶Ă¸ĂąĂşĂ»ĂĽĂ˝');
             function mb_strtoupper($str) {
                 if (is_array($str)) $str = $str[0];
                 return strtoupper(strtr($str, LATIN1_LC_CHARS, LATIN1_UC_CHARS));
