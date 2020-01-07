@@ -18,7 +18,7 @@
 #Disable direct access.
 if(!strcasecmp(basename($_SERVER['SCRIPT_NAME']),basename(__FILE__))) die('kwaheri rafiki!');
 
-define('ROOT_PATH', '/');
+if (!defined('ROOT_PATH')) define('ROOT_PATH', '/');
 define('DISABLE_SESSION', true);
 define('INC_DIR',dirname(__file__).'/../inc/'); //local include dir!
 
